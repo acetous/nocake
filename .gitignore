@@ -1,6 +1,6 @@
 *.class
-.idea
+.idea/
 *.ipr
 *.iws
-.gradle
-build
+.gradle/
+build/
