@@ -6,7 +6,14 @@
 {{/locked}}
 {{^locked}}
 <body style="background: red;">
+<a style="position: fixed; top: 0; bottom: 0; left: 0; right: 0;" href="/lock?token={{token}}"></a>
 {{/locked}}
+
+<script>
+    window.setTimeout(function () {
+        window.location.reload();
+    }, 1000 * 3);
+</script>
 
 </body>
 </html>

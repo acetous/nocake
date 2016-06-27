@@ -23,13 +23,24 @@ targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+
+    maven { url "https://jitpack.io" }
+
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-mustache')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+    compile name: 'jdic-0.9.5'
+    compile('net.java.dev.jna:jna:4.0.0')
+    compile('net.java.dev.jna:jna-platform:4.0.0')
+    compile('com.github.kenglxn.QRGen:javase:2.2.0')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 
