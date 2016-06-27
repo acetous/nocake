@@ -35,7 +35,6 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-mustache')
 	compile('org.springframework.boot:spring-boot-starter-web')
-    compile name: 'jdic-0.9.5'
     compile('net.java.dev.jna:jna:4.0.0')
     compile('net.java.dev.jna:jna-platform:4.0.0')
     compile('com.github.kenglxn.QRGen:javase:2.2.0')

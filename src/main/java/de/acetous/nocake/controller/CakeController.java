@@ -1,5 +1,6 @@
 package de.acetous.nocake.controller;
 
+import ch.qos.logback.core.util.SystemInfo;
 import de.acetous.nocake.service.AuthorizationService;
 import de.acetous.nocake.service.LockService;
 import de.acetous.nocake.service.QrCodeService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.ServletWebRequest;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -67,6 +69,13 @@ public class CakeController {
         model.put("qrCode", qrCode);
 
         return "connect";
+    }
+
+    @RequestMapping("/shutdown")
+    public String shutdown(@RequestParam String token) {
+        checkToken(token);
+        System.exit(0);
+        return "home";
     }
 
     private String getHostname() {

@@ -1,12 +1,44 @@
 <!DOCTYPE html>
 
 <html lang="de">
+<head>
+    <title>No Cake!</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .lock {
+            display: block;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .close {
+            display: block;
+            position: fixed;
+            top: 90%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: black;
+            color: lightslategrey;
+            text-align: center;
+            vertical-align: bottom;
+            text-decoration: none;
+        }
+    </style>
+</head>
 {{#locked}}
 <body style="background: limegreen;">
 {{/locked}}
 {{^locked}}
 <body style="background: red;">
-<a style="position: fixed; top: 0; bottom: 0; left: 0; right: 0;" href="/lock?token={{token}}"></a>
+<a class="lock" href="/lock?token={{token}}"></a>
+<a class="close" href="/shutdown?token={{token}}">Exit</a>
 {{/locked}}
 
 <script>
