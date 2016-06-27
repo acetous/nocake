@@ -8,6 +8,7 @@
         body {
             font-family: sans-serif;
         }
+
         .lock {
             display: block;
             position: fixed;
@@ -30,13 +31,25 @@
             vertical-align: bottom;
             text-decoration: none;
         }
+        img.capture {
+            width:90%;
+            padding: 0 auto;
+        }
     </style>
 </head>
+<body>
+{{#capture}}
+    <img class="capture" src="data:image/png;base64,{{capture}}">
+{{/capture}}
 {{#locked}}
-<body style="background: limegreen;">
+<style> body {
+    background: limegreen;
+}</style>
 {{/locked}}
 {{^locked}}
-<body style="background: red;">
+<style> body {
+    background: red;
+}</style>
 <a class="lock" href="/lock?token={{token}}"></a>
 <a class="close" href="/shutdown?token={{token}}">Exit</a>
 {{/locked}}
