@@ -38,7 +38,6 @@ dependencies {
     compile('net.java.dev.jna:jna:4.0.0')
     compile('net.java.dev.jna:jna-platform:4.0.0')
     compile('com.github.kenglxn.QRGen:javase:2.2.0')
-	compile('com.github.sarxos:webcam-capture:0.3.11')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

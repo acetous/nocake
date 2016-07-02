@@ -3,7 +3,6 @@ package de.acetous.nocake.controller;
 import de.acetous.nocake.service.AuthorizationService;
 import de.acetous.nocake.service.LockService;
 import de.acetous.nocake.service.QrCodeService;
-import de.acetous.nocake.service.WebcamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -21,14 +20,12 @@ public class CakeController {
     private LockService lockService;
     private AuthorizationService authorizationService;
     private QrCodeService qrCodeService;
-    private WebcamService webcamService;
 
     @Autowired
-    public CakeController(LockService lockService, AuthorizationService authorizationService, QrCodeService qrCodeService, WebcamService webcamService) {
+    public CakeController(LockService lockService, AuthorizationService authorizationService, QrCodeService qrCodeService) {
         this.lockService = lockService;
         this.authorizationService = authorizationService;
         this.qrCodeService = qrCodeService;
-        this.webcamService = webcamService;
     }
 
     @RequestMapping("/")
@@ -36,11 +33,6 @@ public class CakeController {
         checkToken(token);
         model.put("locked", lockService.isLocked());
         model.put("token", token);
-        try {
-            model.put("capture", webcamService.captureBase64());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return "home";
     }
 
