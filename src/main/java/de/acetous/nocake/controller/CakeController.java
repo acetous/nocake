@@ -72,8 +72,19 @@ public class CakeController {
     @RequestMapping("/shutdown")
     public String shutdown(@RequestParam String token) {
         checkToken(token);
-        System.exit(0);
-        return "home";
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                    System.exit(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        return "down";
     }
 
     private String getHostname() {
