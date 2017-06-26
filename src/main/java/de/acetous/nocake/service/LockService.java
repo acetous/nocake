@@ -1,9 +1,9 @@
 package de.acetous.nocake.service;
 
-import org.springframework.stereotype.Service;
-
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class LockService {
@@ -35,12 +35,8 @@ public class LockService {
     }
 
     public void lock() throws IOException {
-        try {
-            final String path = System.getenv("windir") + File.separator + "System32" + File.separator + "rundll32.exe";
-            Runtime.getRuntime().exec(path + " user32.dll,LockWorkStation");
-            isLocked = true;
-        } catch (IOException e) {
-            throw e;
-        }
+        String path = Paths.get(System.getenv("windir"), "System32", "rundll32.exe").toString();
+        Runtime.getRuntime().exec(path + " user32.dll,LockWorkStation");
+        isLocked = true;
     }
 }
