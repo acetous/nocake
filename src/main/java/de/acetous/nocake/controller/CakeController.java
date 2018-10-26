@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -29,11 +30,11 @@ public class CakeController {
     }
 
     @RequestMapping("/")
-    public String home(Map<String, Object> model, @RequestParam String token) {
+    public ModelAndView home(Map<String, Object> model, @RequestParam String token) {
         checkToken(token);
         model.put("locked", lockService.isLocked());
         model.put("token", token);
-        return "home";
+        return new ModelAndView("home", model);
     }
 
     @RequestMapping("/lock")
@@ -54,7 +55,7 @@ public class CakeController {
     }
 
     @RequestMapping("/connect")
-    public String connect(Map<String, Object> model, @Value("${server.port}") String port, @RequestParam(required = false) String token) {
+    public ModelAndView connect(Map<String, Object> model, @Value("${server.port}") String port, @RequestParam(required = false) String token) {
         if (authorizationService.hasToken()) {
             checkToken(token);
         }
@@ -64,13 +65,13 @@ public class CakeController {
         String qrCode = qrCodeService.generate(connectUrl);
 
         model.put("url", connectUrl);
-        model.put("qrCode", qrCode);
+        model.put("qrCode", "data:image/gif;base64," + qrCode);
 
-        return "connect";
+        return new ModelAndView("connect", model);
     }
 
     @RequestMapping("/shutdown")
-    public String shutdown(@RequestParam String token) {
+    public ModelAndView shutdown(@RequestParam String token) {
         checkToken(token);
         new Thread(new Runnable() {
 
@@ -84,7 +85,7 @@ public class CakeController {
                 }
             }
         }).start();
-        return "down";
+        return new ModelAndView("down");
     }
 
     private String getHostname() {

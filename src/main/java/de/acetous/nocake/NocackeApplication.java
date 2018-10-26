@@ -8,11 +8,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class NocackeApplication {
 
-	public static void main(String[] args) {
-		SpringApplication springApplication = new SpringApplication(NocackeApplication.class);
-		springApplication.setHeadless(false);
-		ConfigurableApplicationContext applicationContext = springApplication.run(args);
+    public static void main(String[] args) {
+        SpringApplication springApplication = new SpringApplication(NocackeApplication.class);
+        springApplication.setHeadless(false);
+        ConfigurableApplicationContext applicationContext = springApplication.run(args);
 
-		applicationContext.getBean(OpenBrowserService.class).openUrl("/connect");
-	}
+        applicationContext.getBean(OpenBrowserService.class).openUrl("/connect");
+    }
 }

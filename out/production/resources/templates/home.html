@@ -45,8 +45,8 @@
 <style th:unless="${locked}"> body {
     background: red;
 }</style>
-<a class="lock" th:href="@{/lock(token=${token})}"></a>
-<a class="close" th:href="@{/shutdown(token=${token})}">Exit</a>
+<a class="lock" href="/lock?token=${token}"></a>
+<a class="close" href="/shutdown?token=${token}">Exit</a>
 
 <script>
     window.setTimeout(function () {
